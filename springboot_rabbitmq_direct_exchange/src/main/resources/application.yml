@@ -1,0 +1,11 @@
+server:
+  port: 3333
+spring:
+  application:
+    name: mq-direct-exchange
+  rabbitmq:
+    host: 127.0.0.1
+    virtual-host: /vhost
+    username: wsh
+    password: wsh
+    port: 5672

@@ -1,0 +1,12 @@
+server:
+  port: 1111
+spring:
+  application:
+    name: simple-example
+
+  rabbitmq:
+    host: 127.0.0.1
+    virtual-host: /vhost
+    username: wsh
+    password: wsh
+    port: 5672

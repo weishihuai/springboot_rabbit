@@ -1,0 +1,14 @@
+server:
+  port: 5555
+spring:
+  application:
+    name: mq-message-confirm
+  rabbitmq:
+    host: 127.0.0.1
+    virtual-host: /vhost
+    username: wsh
+    password: wsh
+    port: 5672
+    #消息发送确认回调
+    publisher-confirms: true
+    publisher-returns: true
