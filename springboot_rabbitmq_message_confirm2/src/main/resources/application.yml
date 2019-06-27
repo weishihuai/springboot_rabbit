@@ -1,8 +1,8 @@
 server:
-  port: 5555
+  port: 6666
 spring:
   application:
-    name: mq-message-confirm
+    name: mq-message-confirm2
   rabbitmq:
     host: 127.0.0.1
     virtual-host: /vhost
@@ -11,4 +11,7 @@ spring:
     port: 5672
     #消息发送确认回调
     publisher-confirms: true
+    listener:
+      simple:
+        acknowledge-mode: manual
     publisher-returns: true

@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wsh.springboot</groupId>
-    <artifactId>springboot_rabbitmq_message_confirm</artifactId>
+    <artifactId>springboot_rabbitmq_message_confirm2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot_rabbitmq_message_confirm</name>
+    <name>springboot_rabbitmq_message_confirm2</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
