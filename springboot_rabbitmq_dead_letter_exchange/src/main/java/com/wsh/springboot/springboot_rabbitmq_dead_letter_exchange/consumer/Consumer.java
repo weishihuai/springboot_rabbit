@@ -25,7 +25,7 @@ public class Consumer {
         try {
             logger.info("【Consumer】接收到消息:[{}]", receiveMessage);
             if (new Random().nextInt(10) < 5) {
-                logger.warn("【Consumer】拒绝一条信息:[{}]，该消息将会被转发到死信交换器中", receiveMessage);
+                logger.info("【Consumer】拒绝一条信息:[{}]，该消息将会被转发到死信交换器中", receiveMessage);
                 channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
             } else {
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);

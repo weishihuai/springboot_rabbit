@@ -18,10 +18,13 @@ import java.util.Map;
  * <p>
  * 使用方法：申明队列的时候设置 x-dead-letter-exchange 参数
  * <p>
- * 判断一个消息是否是死信消息的依据：
+ * 判断一个消息是否是死信消息（Dead Message）的依据：
  * a. 消息被拒绝（Basic.Reject或Basic.Nack）并且设置 requeue 参数的值为 false;
- * b. 消息过期;
- * c. 队列已满;
+ * b. 消息过期; 消息过期时间设置主要有两种方式：
+ *      1.设置队列的过期时间，这样该队列中所有的消息都存在相同的过期时间（在队列申明的时候使用 x-message-ttl 参数，单位为 毫秒）
+ *      2.单独设置某个消息的过期时间，每条消息的过期时间都不一样；（设置消息属性的 expiration 参数的值，单位为 毫秒）
+ *      3.如果同时使用了两种方式设置过期时间，以两者之间较小的那个数值为准；
+ * c. 队列已满(队列满了，无法再添加数据到mq中);
  * <p>
  * 备份交换器(alternate-exchange)：未被正确路由的消息将会经过此交换器
  * 使用方法：申明交换器的时候设置 alternate-exchange 参数
@@ -80,7 +83,7 @@ public class RabbitMQConfig {
     @Bean
     public Queue queue() {
         Map<String, Object> arguments = new HashMap<>(10);
-        //声明死信交换机
+        //指定死信发送的Exchange
         arguments.put("x-dead-letter-exchange", DEAD_LETTERS_EXCHANGE_NAME);
         return new Queue(QUEUE_NAME, true, false, false, arguments);
     }
