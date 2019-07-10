@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Producer {
 
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
-    private static final String EXCHANGE_NAME = "message_confirm_exchange";
+    private static final String EXCHANGE_NAME = "message_confirm_exchange2";
     private static final String ROUTING_KEY = "user.add.submit";
 
     @Autowired

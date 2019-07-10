@@ -49,7 +49,7 @@ public class CustomConfirmAndReturnCallback implements RabbitTemplate.ConfirmCal
     }
 
     /**
-     * 如果消息没有到达交换机,则该方法中isSendSuccess = false;
+     * 如果消息没有到达交换机,则该方法中isSendSuccess = false,error为错误信息;
      * 如果消息正确到达交换机,则该方法中isSendSuccess = true;
      */
     @Override

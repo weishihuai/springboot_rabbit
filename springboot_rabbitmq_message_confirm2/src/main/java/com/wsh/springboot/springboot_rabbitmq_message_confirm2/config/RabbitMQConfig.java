@@ -1,7 +1,5 @@
 package com.wsh.springboot.springboot_rabbitmq_message_confirm2.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -22,11 +20,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RabbitMQConfig {
-
-    private static final Logger logger = LoggerFactory.getLogger(RabbitMQConfig.class);
     private static final String EXCHANGE_NAME = "message_confirm_exchange";
     private static final String QUEUE_NAME = "message_confirm_queue";
-    private static final String ROUTING_KEY = "user.#";
+    private static final String ROUTING_KEY = "user.*";
 
     @Bean
     private TopicExchange topicExchange() {

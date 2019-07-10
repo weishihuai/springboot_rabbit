@@ -24,6 +24,7 @@ public class Consumer {
     public void receiveMessage(String receiveMessage, Message message, Channel channel) {
         try {
             logger.info("【Consumer】接收到消息:[{}]", receiveMessage);
+            //这里模拟随机拒绝一些消息到死信队列中
             if (new Random().nextInt(10) < 5) {
                 logger.info("【Consumer】拒绝一条信息:[{}]，该消息将会被转发到死信交换器中", receiveMessage);
                 channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);

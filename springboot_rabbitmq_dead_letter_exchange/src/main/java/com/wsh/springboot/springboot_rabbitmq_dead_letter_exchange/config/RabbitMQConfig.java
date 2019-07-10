@@ -33,8 +33,10 @@ import java.util.Map;
 public class RabbitMQConfig {
     private static final String MESSAGE_BAK_QUEUE_NAME = "un_routing_queue_name";
     private static final String MESSAGE_BAK_EXCHANGE_NAME = "un_routing_exchange_name";
+
     private static final String DEAD_LETTERS_QUEUE_NAME = "dead_letters_queue_name";
     private static final String DEAD_LETTERS_EXCHANGE_NAME = "dead_letters_exchange_name";
+
     private static final String QUEUE_NAME = "test_dlx_queue_name";
     private static final String EXCHANGE_NAME = "test_dlx_exchange_name";
     private static final String ROUTING_KEY = "user.add";

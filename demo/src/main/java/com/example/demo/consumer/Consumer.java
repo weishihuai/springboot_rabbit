@@ -1,4 +1,4 @@
-package com.wsh.springboot.springbooy_rabbitmq_message_persistence.consumer;
+package com.example.demo.consumer;
 
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class Consumer {
     private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
-//       @RabbitListener(queues = "durable_queue_name")
+    @RabbitListener(queues = "durable_queue_name")
     public void receiveMessage(String msg, Message message, Channel channel) {
         try {
             logger.info("【Consumer  receiveMessage】接收到消息为:[{}]", msg);
