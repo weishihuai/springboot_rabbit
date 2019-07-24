@@ -16,3 +16,5 @@ spring:
         acknowledge-mode: manual
     #
     publisher-returns: true
+    template:
+      mandatory: true
