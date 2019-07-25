@@ -1,0 +1,27 @@
+server:
+  port: 9099
+spring:
+  application:
+    name: rabbitmq_deadqueue_demo
+  rabbitmq:
+    host: localhost
+    virtual-host: /vhost
+    username: wsh
+    password: wsh
+    publisher-confirms: true
+    port: 5672
+  datasource:
+    username: root
+    password: wsh0905
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/rabbitmq_dead_queue?characterEncoding=utf8
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.example.entitycom.wsh.springboot.springboot_rabbitmq_deadqueue_demo.entity
+
+logging:
+  level:
+    com:
+      example:
+        mapper : debug

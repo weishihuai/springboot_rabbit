@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsh.springboot.springboot_rabbitmq_deadqueue_demo.repository.OrderInfoMapper">
+
+    <select id="findByOrderStatus" resultType="String">
+      select order_status from order_info where order_id = #{orderId}
+    </select>
+
+    <update id="updateOrderStatus">
+          update order_info t set t.order_status = '2' where t.order_id = #{orderId}
+    </update>
+
+    <insert id="saveOrderInfo">
+        insert into order_info(pkid,order_id,order_status) values(#{pkid},#{orderId},#{orderStatus})
+    </insert>
+
+</mapper>
