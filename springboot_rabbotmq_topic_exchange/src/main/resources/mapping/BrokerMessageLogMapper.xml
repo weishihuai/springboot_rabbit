@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsh.springboot.springboot_rabbotmq_topic_exchange.mapper.BrokerMessageLogMapper">
+
+    <!--查询消息状态为0(发送中) 且已经超时的消息集合-->
+    <select id="queryTimeoutBrokerMessageLog"
+            resultType="com.wsh.springboot.springboot_rabbotmq_topic_exchange.entity.BrokerMessageLog">
+              SELECT t.`create_time` AS createTime,t.`message` AS message,t.`message_id` AS messageId,t.`next_retry` AS nextRetry, t.`status` AS STATUS,t.`try_count` AS tryCount,t.`update_time` AS updateTime
+                  from broker_message_log t
+                  where status = '0'
+                  and next_retry <![CDATA[ <= ]]> sysdate()
+    </select>
+
+    <!--更新消息重试发送次数-->
+    <update id="updateBrokerMessageLogRetryCount">
+        update broker_message_log bml
+        set bml.try_count = bml.try_count + 1,
+          bml.update_time = #{updateTime, jdbcType=TIMESTAMP}
+        where bml.message_id = #{messageId,jdbcType=VARCHAR}
+  </update>
+
+    <!--更新消息发送状态-->
+    <update id="changeBrokerMessageLogStatus">
+        update broker_message_log bml
+        set bml.status = #{status,jdbcType=VARCHAR},
+              bml.update_time = #{updateTime, jdbcType=TIMESTAMP}
+        where bml.message_id = #{messageId,jdbcType=VARCHAR}
+  </update>
+
+    <!--保存消息发送记录消息-->
+    <insert id="saveBrokerMessageLog"
+            parameterType="com.wsh.springboot.springboot_rabbotmq_topic_exchange.entity.BrokerMessageLog">
+            INSERT INTO `broker_message_log`
+                    (`message_id`,
+                     `message`,
+                     `try_count`,
+                     `status`,
+                     `next_retry`,
+                     `create_time`,
+                     `update_time`)
+                VALUES (#{messageId},
+                        #{message},
+                        #{tryCount},
+                        #{status},
+                        #{nextRetry},
+                        #{createTime},
+                        #{updateTime})
+  </insert>
+
+</mapper>

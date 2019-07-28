@@ -2,10 +2,32 @@ server:
   port: 4444
 spring:
   application:
-    name: mq-topic-exchange
+    name: rabbitmq-message-abilitity-demo
   rabbitmq:
     host: 127.0.0.1
     virtual-host: /vhost
     username: wsh
     password: wsh
     port: 5672
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+  datasource:
+    username: root
+    password: wsh0905
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/rabbitmq_reliability?characterEncoding=utf8
+  http:
+    encoding:
+        charset: utf-8
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.wsh.springboot.springboot_rabbotmq_topic_exchange.entity
